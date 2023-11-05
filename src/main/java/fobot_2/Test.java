@@ -1,8 +1,8 @@
 package fobot_2;
 
+import fobot_2.entity.Coin;
+import fobot_2.entity.Collectible;
 import fobot_2.entity.Robot;
-import fobot_2.visuals.EventConfig;
-import fobot_2.visuals.RenderConfig;
 import fobot_2.visuals.Renderer;
 import javafx.application.Application;
 
@@ -15,6 +15,12 @@ public class Test
         {
             new Robot(0,0);
             System.out.println("Hello World!");
+
+            Coin coin = new Coin(0,0);
+            var immutableCoin = coin.getImmutable();
+
+            immutableCoin.increment();
+            int x = immutableCoin.getAmount();
 
 
             for (int i = 0; i < 100000; i++)

@@ -2,11 +2,13 @@ package fobot_2;
 
 
 import fobot_2.cmath.Vec2;
+import fobot_2.entity.Collector;
 import fobot_2.entity.DynamicEntity;
 import fobot_2.entity.Entity;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -27,8 +29,7 @@ public class World
     private final ConcurrentHashMap<String, ConcurrentHashMap<Vec2, CopyOnWriteArrayList<Entity>>> staticEntities = new ConcurrentHashMap<>();
     private final Chunk[] dynamicChunks;
 
-
-    private static Vec2 dummyPosition = new Vec2(-1, -1);
+    private final Field[][] fields;
 
     private final int width;
     private final int height;
@@ -49,6 +50,8 @@ public class World
         //Create regular array since we know how many fields we will have.
         this.dynamicChunks = new Chunk[1]; //TODO: Create proper quantity
         this.dynamicChunks[0] = new Chunk(0,0,0);
+
+        fields = new Field[width][height];
         //this.chunks = new Chunk[width * height / 4];
     }
 
@@ -74,6 +77,21 @@ public class World
     {
         if (numberOfCoins < 0)
             throw new IllegalArgumentException("Number of coins must be greater than -1!");
+    }
+
+
+
+    public Entity collectEntity(Entity collector)
+    {
+        if(!(collector instanceof Collector))
+            throw new RuntimeException("Only collector is permitted to collect Entities");
+
+        if(Objects.equals(collector.getPosition(), new Vec2(0, 0)))
+        {
+            return  null;
+        }
+
+        return null;
     }
 
 

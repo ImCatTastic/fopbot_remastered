@@ -5,7 +5,7 @@ import fobot_2.World;
 import fobot_2.layoutVisuals.RobotVisual;
 import fobot_2.cmath.Vec2;
 
-public class Robot extends DynamicEntity
+public class Robot extends Entity implements Obstacle, Collector
 {
     private boolean isOff = false;
     private boolean logTrace = false;
@@ -71,7 +71,7 @@ public class Robot extends DynamicEntity
 
     public boolean isFrontClear()
     {
-        return World.getInstance().hasObstacleOnCell(pos.add(direction.getDelta()));
+        return World.getInstance().hasObstacleOnCell(position.add(direction.getDelta()));
     }
 
     public void crash()
@@ -80,9 +80,8 @@ public class Robot extends DynamicEntity
         System.exit(0);
     }
 
-
     @Override
-    public boolean isObstacle()
+    public boolean isBlockingPath(Vec2 pos, Direction direction)
     {
         return false;
     }

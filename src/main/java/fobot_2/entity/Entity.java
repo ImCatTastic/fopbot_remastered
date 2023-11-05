@@ -1,10 +1,13 @@
 package fobot_2.entity;
 
+import fobot_2.Direction;
 import fobot_2.World;
 import fobot_2.layoutVisuals.EntityVisual;
 import fobot_2.cmath.Vec2;
 import fobot_2.visuals.RenderHints.OverlapMode;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public abstract class Entity
 {
@@ -12,7 +15,8 @@ public abstract class Entity
     final int zLayer;
     final EntityVisual node;
 
-    protected Vec2 pos;
+    protected Direction direction;
+    protected Vec2 position;
     protected int x;
     protected int y;
 
@@ -20,7 +24,7 @@ public abstract class Entity
     {
         this.x = x;
         this.y = y;
-        this.pos = new Vec2(x, y);
+        this.position = new Vec2(x, y);
 
         this.node = node;
         this.overlapMode = overlapMode;
@@ -63,7 +67,7 @@ public abstract class Entity
 
     public Vec2 getPosition()
     {
-        return pos;
+        return position;
     }
     public int getX()
     {
@@ -74,5 +78,29 @@ public abstract class Entity
         return y;
     }
 
-    public abstract boolean isObstacle();
+    public Direction getDirection()
+    {
+        return direction;
+    }
+
+    /*
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(getType(), x, y);
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj instanceof Entity entity)
+        {
+            return
+                this.position.equals(entity.position) &&
+                this.getType().equals(entity.getType());
+        }
+
+        return false;
+    }
+    */
 }
