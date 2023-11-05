@@ -1,0 +1,23 @@
+
+
+
+
+Field class:
+-> Should field store entities, makes frequent repositioning
+   very inefficient... How to find out if entity is on a field then tho
+   other than iterating all entities?
+   Simple map that stores entities in buckets and entities can choose to
+   remove themselves??
+
+
+
+Chunk class:
+-> Optimize entity checks like isFrontClear and entity updates using chunks.
+
+-> Static entities are stored on a field, since they wont change positions
+-> Dynamic entities are stored in chunks, and they keep their own position
+    and when they exit a chunk, only then do we need to remove them from the chunk
+    and add them to the next chunk.
+
+> Increase lookup times by having a structure for each Entity type.
+  Perfomance gains outweigh the additional header costs.

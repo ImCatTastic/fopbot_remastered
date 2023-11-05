@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.dokka)
     id("fopbot-publish")
     id("fopbot-sign")
+    id("org.openjfx.javafxplugin") version "0.1.0"
 }
 
 buildscript {
@@ -25,6 +26,11 @@ version = file("version").readLines().first()
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
+}
+
+javafx {
+    version = "17.0.1"
+    modules = listOf("javafx.controls")
 }
 
 dependencies {
